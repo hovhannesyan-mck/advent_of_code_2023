@@ -94,8 +94,8 @@ fn part_2(contents: &String) -> u64 {
 
     let maps = get_maps(contents);
 
-    seed_numbers.iter().fold(std::u64::MAX, |location, &number| {
-        let min_location = (number.0..number.0+number.1).into_par_iter().map(|number| {
+    seed_numbers.iter().fold(std::u64::MAX, |location, &(start, len)| {
+        let min_location = (start..start+len).into_par_iter().map(|number| {
             maps.iter().fold(number, |location, map| {
                 map.get_location(location)
             })
