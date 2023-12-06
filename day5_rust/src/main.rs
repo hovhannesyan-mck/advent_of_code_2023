@@ -27,8 +27,8 @@ fn main() {
 
     let contents = fs::read_to_string(file_path).unwrap();
 
-    println!("Sum part 1: {}", part_1(&contents));
-    println!("Sum part 2: {}", part_2(&contents));
+    println!("Location part 1: {}", part_1(&contents));
+    println!("Location part 2: {}", part_2(&contents));
 }
 
 fn get_seed_numbers(first_line: &str) -> Vec<u64> {
