@@ -30,25 +30,22 @@ fn get_differences_map(
     get_differences_map(differences_vec_new, differences_map, step+1)
 }
 
-fn get_new_last_value(
-    differences_map: &BTreeMap<u8, Vec<i64>>
+fn get_new_value(
+    differences_map: &BTreeMap<u8, Vec<i64>>,
+    is_first: bool
 ) -> i64 {
     differences_map.into_iter().rev()
         .fold(0, |last_value, (_, differences_vec)| {
+            if is_first {
+                return differences_vec.last().unwrap() - last_value;
+            }
             differences_vec.last().unwrap() + last_value
         })
 }
 
-fn get_new_first_value(
-    differences_map: &BTreeMap<u8, Vec<i64>>
+fn part_1(
+    contents: &String
 ) -> i64 {
-    differences_map.into_iter().rev()
-        .fold(0, |last_value, (_, differences_vec)| {
-            differences_vec.first().unwrap() - last_value
-        })
-}
-
-fn part_1(contents: &String) -> i64 {
     let reg = Regex::new(r"-?\d+").unwrap();
 
     contents.lines().map(|line| {
@@ -60,7 +57,7 @@ fn part_1(contents: &String) -> i64 {
 
         get_differences_map(starting_vec, &mut differences_map, 0);
 
-        get_new_last_value(&differences_map)
+        get_new_value(&differences_map, false)
     })
     .sum()
 }
@@ -79,7 +76,7 @@ fn part_2(
 
         get_differences_map(starting_vec, &mut differences_map, 0);
 
-        get_new_first_value(&differences_map)
+        get_new_value(&differences_map, true)
     })
     .sum()
 }
