@@ -1,0 +1,9 @@
+[package]
+name = "day16_rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.75"
+ndarray = "0.15.6"
+rayon = "1.8.0"
