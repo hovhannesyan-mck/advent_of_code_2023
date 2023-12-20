@@ -20,13 +20,6 @@ impl Point {
         Self { x, y }
     }
 
-    fn add(&self, other: &Self) -> Self {
-        Self {
-            x: self.x + other.x,
-            y: self.y + other.y,
-        }
-    }
-
     fn dig<F>(&mut self, direction: &Direction, count: u32, mut func: F)
     where
         F: FnMut(&mut Self),
