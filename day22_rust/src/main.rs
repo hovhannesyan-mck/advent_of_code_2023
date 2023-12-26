@@ -1,4 +1,4 @@
-use std::{fs, collections::{HashMap, HashSet, VecDeque, BTreeSet}};
+use std::{fs, collections::{HashMap, HashSet}};
 use ndarray::{Array3, s};
 use itertools::Itertools;
 use rayon::prelude::*;
@@ -301,7 +301,7 @@ fn part_2(
 
     let supporting_set = get_supporting_map(&data, &figures);
 
-    let mut cant_be_disintegrated = BTreeSet::new();
+    let mut cant_be_disintegrated = HashSet::new();
 
 
     figures.iter().for_each(|figure| {
